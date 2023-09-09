@@ -1,35 +1,72 @@
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>下载站</title>
     <style>
-/* 样式化下载按钮 */
-div.file a[href][download] button {
-    display: inline-block;
-    background-color: #007BFF !important; /* 背景颜色 */
-    color: #fff !important; /* 文本颜色 */
-    padding: 10px 20px !important; /* 内边距 */
-    border: none !important; /* 移除边框 */
-    border-radius: 5px !important; /* 圆角 */
-    text-decoration: none !important; /* 移除下划线 */
-    cursor: pointer !important; /* 鼠标指针样式 */
-    transition: background-color 0.3s ease; /* 过渡效果 */
-}
+        /* 样式化下载按钮 */
+        div.file a[href][download] button {
+            display: inline-block;
+            background-color: #007BFF !important; /* 背景颜色 */
+            color: #fff !important; /* 文本颜色 */
+            padding: 10px 20px !important; /* 内边距 */
+            border: none !important; /* 移除边框 */
+            border-radius: 5px !important; /* 圆角 */
+            text-decoration: none !important; /* 移除下划线 */
+            cursor: pointer !important; /* 鼠标指针样式 */
+            transition: background-color 0.3s ease; /* 过渡效果 */
+        }
 
-/* 悬停时的样式 */
-div.file a[href][download] button:hover {
-    background-color: #0056b3 !important; /* 悬停时的背景颜色 */
-}
+        /* 悬停时的样式 */
+        div.file a[href][download] button:hover {
+            background-color: #0056b3 !important; /* 悬停时的背景颜色 */
+        }
 
-
+        /* 样式化复制Linux下载命令按钮 */
+        #copyCommandButton {
+            display: inline-block;
+            background-color: #28a745; /* 背景颜色 */
+            color: #fff; /* 文本颜色 */
+            padding: 10px 20px; /* 内边距 */
+            border: none; /* 移除边框 */
+            border-radius: 5px; /* 圆角 */
+            cursor: pointer; /* 鼠标指针样式 */
+            transition: background-color 0.3s ease; /* 过渡效果 */
+            margin-top: 10px; /* 添加一些间距 */
+        }
     </style>
-
-        <!-- 文件1 -->
-        <div class="file">
-            <h2>replit-root</h2>
-            <p>让你的Repls成为root。您可以点击下面的按钮来下载它，并在Repls使用unzip和sh命令使用它：</p>
-            <a href="./root/replit.zip" download>
-                <button>下载</button>
-            </a>
-        </div>
 </head>
+<body>
+    <!-- 文件1 -->
+    <div class="file">
+        <h2>replit-root</h2>
+        <p>让你的Repls成为root。您可以点击下面的按钮来下载它，并在Repls使用unzip和sh命令使用它：</p>
+        <a href="./root/replit.zip" download>
+            <button>下载</button>
+        </a>
+        <!-- 复制Linux下载命令按钮 -->
+        <button id="copyCommandButton">复制Linux下载命令</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script>
+        // 初始化Clipboard.js
+        var clipboard = new ClipboardJS('#copyCommandButton', {
+            text: function() {
+                return 'wget https://i-love-paper.github.io/download/root/replit.zip'; // 替换URL_TO_DOWNLOAD和FILE_NAME
+            }
+        });
+
+        // 当复制成功时，显示提示
+        clipboard.on('success', function(e) {
+            alert('Linux下载命令已复制到剪贴板！');
+        });
+
+        // 当复制失败时，显示提示
+        clipboard.on('error', function(e) {
+            alert('复制失败，请手动复制Linux下载命令！');
+        });
+    </script>
+</body>
+</html>
